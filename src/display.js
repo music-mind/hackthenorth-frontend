@@ -28,8 +28,8 @@ class Display extends React.Component {
       const tags = activity.tags.map((tag) => {
         return <Chip label={tag} />;
       })
-      const start = new Date(Date.parse(activity.start_time)).toLocaleTimeString();
-      const end = new Date(Date.parse(activity.end_time)).toLocaleTimeString();
+      const start = new Date(Date.parse(activity.start_time)).toLocaleString();
+      const end = new Date(Date.parse(activity.end_time)).toLocaleString();
 
       return <ExpansionPanel key={activity.id}>
         <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
