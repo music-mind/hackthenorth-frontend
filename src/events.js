@@ -84,6 +84,19 @@ class Events extends React.Component {
     return;
   };
 
+  handleRemove = (id) => {
+    console.log(id);
+    let newList = [];
+    this.state.list.forEach((activity) => {
+      if (activity.id != id) {
+        newList.push(activity);
+      }
+    });
+    this.setState({
+      list: newList,
+    })
+  };
+
   componentDidMount() {
     fetch("https://hackthenorth.com/fe-schedule.json", {
         method: 'GET',
@@ -119,7 +132,8 @@ class Events extends React.Component {
       <TextField label="Search By Tag" value={tag} onChange={this.handleTagChange}/>
       <p>
       </p>
-      <Display data={display} all_data={data} handleAdd={this.handleAdd}/>
+      <Display data={display} all_data={data} handleAdd={this.handleAdd} 
+      handleRemove={this.handleRemove}/>
       <p>
       </p>
       <Button variant="raised" size="medium" color="secondary" 
@@ -132,7 +146,8 @@ class Events extends React.Component {
       </p>
       <Divider />
       <Typography variant="title">My List of Activities</Typography>
-      <Display data={list} all_data={data} handleAdd={this.handleAdd}/>
+      <Display data={list} all_data={data} handleAdd={this.handleAdd} 
+      handleRemove={this.handleRemove}/>
       </div>
     );
   }

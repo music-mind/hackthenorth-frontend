@@ -45,7 +45,7 @@ class Display extends React.Component {
         </ExpansionPanelDetails>
          <Divider />
         <ExpansionPanelActions>
-          <Button size="small" >Remove from List</Button>
+          <Button size="small" onClick={this.handleRemove(activity.id)}>Remove from List</Button>
           <Button size="small" color="primary" onClick={this.handleAdd(activity.id)}>
             Add To My List
           </Button>
