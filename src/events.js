@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import Display from './display';
 import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
-import Divider from 'material-ui/Divider';
 import Typography from 'material-ui/Typography';
 
 class Events extends React.Component {
@@ -73,6 +72,8 @@ class Events extends React.Component {
 
   handleAdd = (id) => {
     console.log(id);
+    let exists = this.state.list.some((activity) => activity.id === id);
+    if (exists) return;
     let newList = this.state.list;
     this.state.data.forEach((activity) => {
       if (activity.id === id) {
@@ -145,7 +146,6 @@ class Events extends React.Component {
       onClick={this.handleRefresh}> Refresh </Button>
       <p>
       </p>
-      <Divider />
       <Typography variant="title">My List of Activities</Typography>
       <Display data={list} all_data={data} handleAdd={this.handleAdd} 
       handleRemove={this.handleRemove}/>
