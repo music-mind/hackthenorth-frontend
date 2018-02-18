@@ -128,6 +128,7 @@ class Events extends React.Component {
       <div>
       <p>
       </p>
+      <Typography variant="title">Hack The North Activities</Typography>
       <TextField label="Search By Title" value={title} onChange={this.handleTitleChange}/>
       <TextField label="Search By Tag" value={tag} onChange={this.handleTagChange}/>
       <p>
