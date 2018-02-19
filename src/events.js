@@ -12,15 +12,15 @@ class Events extends React.Component {
       display: [],
       title: '',
       tag: '',
-      offset: 10,
+      offset: 0,
       list: [],
     };
   }
 
   handleLoad = () => {
     const offset = this.state.offset;
-    if (offset > this.state.data.length) return;
-    let newDisplay = this.state.data.slice(offset, offset + 10);
+    if (offset > this.state.data.length - 10) return;
+    let newDisplay = this.state.data.slice(offset + 10, offset + 20);
     this.setState({
       offset: this.state.offset + 10,
       display: newDisplay,
@@ -38,8 +38,8 @@ class Events extends React.Component {
   };
 
   handleRefresh = () => {
-    const offset = 10;
-    let newDisplay = this.state.data.slice(0, offset);
+    const offset = 0;
+    let newDisplay = this.state.data.slice(offset, offset + 10);
     this.setState({
       offset: offset,
       display: newDisplay,
