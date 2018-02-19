@@ -9,20 +9,46 @@ import Divider from 'material-ui/Divider';
 import Typography from 'material-ui/Typography';
 import Chip from 'material-ui/Chip';
 import ExpandMoreIcon from '../node_modules/material-ui-icons/ExpandMore';
+import Snackbar from 'material-ui/Snackbar';
+import IconButton from 'material-ui/IconButton';
+import CloseIcon from '../node_modules/material-ui-icons/Close';
+
+import Delete from '../node_modules/material-ui-icons/Delete';
+import AddIcon from '../node_modules/material-ui-icons/Add';
+
 
 class Display extends React.Component {
+  state = {
+    add: false,
+    remove: false,
+  };
 
   handleAdd = id => e => {
+    this.handleClick('add');
     return this.props.handleAdd(id);
   }
 
   handleRemove = id => e => {
+    this.handleClick('remove');
     return this.props.handleRemove(id);
   }
+
+  handleClick = (field) => {
+    this.setState({ [field]: true });
+  };
+
+  handleClose = field => (event, reason) => {
+    if (reason === 'clickaway') {
+      return;
+    }
+
+    this.setState({ [field]: false });
+  };
   
   render() {
 
     const { data, all_data } = this.props;
+    const { add, remove } = this.state;
 
     const activities = data.map((activity) => {
       const tags = activity.tags.map((tag) => {
@@ -45,9 +71,9 @@ class Display extends React.Component {
         </ExpansionPanelDetails>
          <Divider />
         <ExpansionPanelActions>
-          <Button size="small" onClick={this.handleRemove(activity.id)}>Remove from List</Button>
+          <Button size="small" onClick={this.handleRemove(activity.id)}><Delete />  Remove from List</Button>
           <Button size="small" color="primary" onClick={this.handleAdd(activity.id)}>
-            Add To My List
+            <AddIcon />  Add To My List 
           </Button>
         </ExpansionPanelActions>
       </ExpansionPanel>
@@ -56,6 +82,34 @@ class Display extends React.Component {
     return (
       <div>
         {activities}
+        <Snackbar
+          open={add}
+          autoHideDuration={2000}
+          onClose={this.handleClose("add")}
+          message={<span>Added to Your List!</span>}
+          action={[,
+            <IconButton
+              color="inherit"
+              onClick={this.handleClose("add")}
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
+        <Snackbar
+          open={remove}
+          autoHideDuration={2000}
+          onClose={this.handleClose("remove")}
+          message={<span>Removed from Your List!</span>}
+          action={[,
+            <IconButton
+              color="inherit"
+              onClick={this.handleClose("remove")}
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
       </div>
     );
   }

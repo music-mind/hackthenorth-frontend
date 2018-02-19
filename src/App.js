@@ -10,6 +10,8 @@ import Paper from 'material-ui/Paper';
 import Clock from './clock';
 import Events from './events';
 
+import Happy from '../node_modules/material-ui-icons/SentimentSatisfied';
+
 class App extends Component {
   state = {
     area: 1,
@@ -48,6 +50,7 @@ class App extends Component {
         <Typography component="h3">
           Thanks for Checking out Hack The North!
         </Typography>
+        <Happy />
         </Paper>
       </div>
     );

@@ -4,6 +4,13 @@ import Button from 'material-ui/Button';
 import TextField from 'material-ui/TextField';
 import Typography from 'material-ui/Typography';
 
+import ChevronRight from '../node_modules/material-ui-icons/ChevronRight';
+import ChevronLeft from '../node_modules/material-ui-icons/ChevronLeft';
+import Refresh from '../node_modules/material-ui-icons/Refresh';
+
+import Title from '../node_modules/material-ui-icons/Title';
+import Book from '../node_modules/material-ui-icons/Book';
+
 class Events extends React.Component {
   constructor(props) {
     super(props);
@@ -130,8 +137,10 @@ class Events extends React.Component {
       <p>
       </p>
       <Typography variant="title">Hack The North Activities</Typography>
+      <Title />
       <TextField label="Search By Title" value={title} onChange={this.handleTitleChange}/>
       <TextField label="Search By Tag" value={tag} onChange={this.handleTagChange}/>
+      <Book />
       <p>
       </p>
       <Display data={display} all_data={data} handleAdd={this.handleAdd} 
@@ -139,11 +148,11 @@ class Events extends React.Component {
       <p>
       </p>
       <Button variant="raised" size="medium" color="secondary" 
-      onClick={this.handlePrevious}> Load Previous </Button>
+      onClick={this.handlePrevious}><ChevronLeft /> Load Previous </Button>
       <Button variant="raised" size="medium" color="primary" 
-      onClick={this.handleLoad}> Load More </Button>
-      <Button variant="raised" size="medium" color="secondary" 
-      onClick={this.handleRefresh}> Refresh </Button>
+      onClick={this.handleLoad}> Load More  <ChevronRight /></Button>
+      <Button variant="raised" size="medium" color="tertiary" 
+      onClick={this.handleRefresh}> Refresh  <Refresh /></Button>
       <p>
       </p>
       <Typography variant="title">My List of Activities</Typography>
